@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,6 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
   double layer3HSpeed = 0.075;
   double layer4HSpeed = 0.07; // fast - top layers will have more resizing speed
 
+  //can show lottie birds
+  bool iconColor() {
+    if (_scrollOffset > 600) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     // some screen-size values
@@ -93,14 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
               bottom: screenSize.height * 0.54 + _scrollOffset * textSpeed,
               left: 0,
               right: 0,
-              child: const Text(
-                  "MINATO", // I need to use GoogleFonts & TextStroke Paackages
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 55,
-                  ))),
+              child: _buildTextSection()),
+          //*/ some flying birds
+          Positioned(
+              bottom: screenSize.height * 0.7 + _scrollOffset * layer2Speed,
+              left: 0,
+              right: 0,
+              child: Lottie.asset("assets/json/birds.json")),
+          // */
           Positioned(
               bottom: screenSize.height * 0.5 + _scrollOffset * layer3Speed,
               left: _scrollOffset * layer3HSpeed * -1,
@@ -115,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Image.asset("assets/images/couples.png")),
 
           /*
-              A Black Container 
+              A Black Container at Last
           */
           Positioned(
               bottom: -screenSize.height * 0.5 +
@@ -126,18 +133,20 @@ class _HomeScreenState extends State<HomeScreen> {
               height: screenSize.height,
               child: Container(
                 color: Colors.deepPurple,
-                child: const Center(
-                  child: Text("Parallax Effect"),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      top: screenSize.width / 2, left: screenSize.width / 2.5),
+                  child: const Text("Parallax Effect"),
                 ),
               )),
 
-          /*/ some birds
+          // some navigation buttons
           Positioned(
-              bottom: 300,
-              left: 0,
-              right: 0,
-              height: screenSize.height * 0.15,
-              child: Lottie.asset("assets/json/birds.json")),  */
+            top: 20,
+            left: 0,
+            right: 0,
+            child: _buildNavigationBar(),
+          ),
 
           // this below Widget with( Positioned.fill) helps to make the screen scrollable ,
           // and also the height : represents the whole layoutHeight of the page .
@@ -149,6 +158,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )),
         ]),
+      ),
+    );
+  }
+
+  // NAME
+  Text _buildTextSection() {
+    return const Text(
+        "MINATO", // I need to use GoogleFonts & TextStroke Paackages //
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 55,
+        ));
+  }
+
+// nav bar
+  Padding _buildNavigationBar() {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Icon(
+            Icons.menu_sharp,
+            color: iconColor() ? Colors.black : Colors.white,
+          ),
+        ],
       ),
     );
   }
