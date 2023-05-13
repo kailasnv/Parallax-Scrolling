@@ -1,16 +1,5 @@
-# parallax
+# parallax scrolling effect
 
-A new Flutter project.
+### screen-rec.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/kailasnv/Parallax-Scrolling/assets/130171990/f7ee6f6f-fe04-4a25-8262-21925eedd6e1" width=20% height=20%>
